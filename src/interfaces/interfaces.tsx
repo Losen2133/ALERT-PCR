@@ -1,5 +1,3 @@
-import type { CanvasPath } from "react-sketch-canvas";
-
 export interface PatientDemographics {
   lastName?: string;
   firstName?: string;
@@ -112,4 +110,47 @@ export interface PCRRecord {
   patientHistory?: History;
   caseTeamOpsInfo?: TeamOps;
   secondaryAssessment?: SecondaryAssessment
+  waivers?: Waivers
+}
+
+export interface Waivers {
+  informedConsent?: {
+    patientName?: string;
+    patientSign?: CanvasPath[];
+    patientSignImage?: string;
+    date1?: Date | undefined;
+    time1?: string;
+    guardianName?: string;
+    guardianSign?: CanvasPath[];
+    guardianSignImage?: string;
+    date2?: Date | undefined;
+    time2?: string;
+  };
+  refusalOfTreatment?: {
+    contactNo?: string;
+    patientName?: string;
+    patientSign?: CanvasPath[];
+    patientSignImage?: string;
+    witnessName?: string;
+    witnessSign?: CanvasPath[];
+    witnessSignImage?: string;
+  }
+  refusalForAdmission?: {
+    medicalFacility?: string;
+    reasonForRefusal?: string;
+    physicianName?: string;
+    physicianSign?: CanvasPath[];
+    physicianSignImage?: string;
+    witnessName?: string;
+    witnessSign?: CanvasPath[];
+    witnessSignImage?: string;
+    date1?: Date | undefined;
+    date2?: Date | undefined;
+  }
+}
+
+export interface CanvasPath {
+  points: number[];
+  stroke: string;
+  strokeWidth: number;
 }

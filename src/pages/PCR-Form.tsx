@@ -12,12 +12,18 @@ import { PatientAssessmentFieldsSection } from "@/components/PatientAssessmentFi
 import { PatientVitalsFieldCard } from "@/components/PatientVitalsFieldCard";
 import { PatientHistoryFieldCard } from "@/components/PatientHistoryFieldCard";
 import { PatientSecondaryAssessmentFieldCard } from "@/components/PatientSecondaryAssessmentFieldCard";
-import type { ReactSketchCanvasRef } from "react-sketch-canvas";
 import { handleGeneratePDF } from "@/lib/pdf"
 import { TeamsOpsFieldCard } from "@/components/TeamOpsFieldCard";
+import { WaiverSection } from "@/components/WaiverSection";
 
 export const PCRForm = () => {
-    const traumaCanvasRef = useRef<ReactSketchCanvasRef>(null);
+    const traumaCanvasRef = useRef<any>(null);
+    const signature1Ref = useRef<any>(null);
+    const signature2Ref = useRef<any>(null);
+    const signature3Ref = useRef<any>(null);
+    const signature4Ref = useRef<any>(null);
+    const signature5Ref = useRef<any>(null);
+    const signature6Ref = useRef<any>(null);
     const [newPCRRecord, setNewPCRRecord] = useState<PCRRecord>({
             caseDetails: {},
             patientDemographics: {},
@@ -82,7 +88,7 @@ export const PCRForm = () => {
                                 <Ambulance className="mr-2 h-4 w-4" />
                                 Team & Ops
                             </TabsTrigger>
-                            <TabsTrigger value="wavers" className="border border-1px lg:border-none">
+                            <TabsTrigger value="waivers" className="border border-1px lg:border-none">
                                 <Signature className="mr-2 h-4 w-4"/>
                                 Waivers
                             </TabsTrigger>
@@ -179,7 +185,7 @@ export const PCRForm = () => {
                                     secondaryAssessment: data // FIX: Use 'secondaryAssessment', not 'patientSecondaryAssessment'
                                 }))
                             }
-                            ref={traumaCanvasRef}
+                            traumaCanvasRef={traumaCanvasRef} // Fixed
                         />
                     </motion.div>
                 </TabsContent>
@@ -199,6 +205,32 @@ export const PCRForm = () => {
                                 }))
                             }
                         />
+                    </motion.div>
+                </TabsContent>
+                <TabsContent value="waivers">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 30 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <WaiverSection
+                            value={newPCRRecord.waivers}
+                            onChange={(waivers) =>
+                                setNewPCRRecord(prev => ({
+                                    ...prev,
+                                    waivers
+                                }))
+                            }
+                            signature1Ref={signature1Ref}
+                            signature2Ref={signature2Ref}
+                            signature3Ref={signature3Ref}
+                            signature4Ref={signature4Ref}
+                            signature5Ref={signature5Ref}
+                            signature6Ref={signature6Ref}
+                            className="w-full"
+                        />
+
                     </motion.div>
                 </TabsContent>
             </Tabs>
