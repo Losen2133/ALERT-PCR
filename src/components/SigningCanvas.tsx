@@ -64,20 +64,28 @@ export function SignatureCanvas({ initialPaths = [], onSave, ref }: SignatureCan
     isDrawing.current = true;
     const pos = getPointerPos(e.target.getStage());
     if (!pos) return;
-    setPaths([...paths, { points: [pos.x, pos.y], stroke: "#0f172a", strokeWidth: 2.5 }]);
+
+    // Duplicating the point here allows single-click dots to render
+    setPaths([...paths, { 
+      points: [pos.x, pos.y, pos.x, pos.y], 
+      stroke: "#0f172a", 
+      strokeWidth: 2.5 
+    }]);
   };
 
   const handleMove = (e: any) => {
     if (!isDrawing.current) return;
-    
-    // CRITICAL FOR MOBILE: Prevent page scroll while drawing
     if (e.evt && e.evt.cancelable) e.evt.preventDefault();
 
     const pos = getPointerPos(e.target.getStage());
     if (!pos) return;
 
     const lastPath = { ...paths[paths.length - 1] };
+    
+    // Check if we are still on the "dot" (initial 4 coordinates)
+    // If we've started moving, we can just append new points
     lastPath.points = lastPath.points.concat([pos.x, pos.y]);
+    
     const newPaths = [...paths.slice(0, -1), lastPath];
     setPaths(newPaths);
   };

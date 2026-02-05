@@ -117,10 +117,12 @@ export const WaiverSection = ({
                                                     })
                                                 }
                                             />
-                                            <InputGroupAddon align={"inline-end"}>
+                                            <InputGroupAddon align={"inline-end"} className="p-2">
                                                 <Dialog open={isSignCanvas1Open} onOpenChange={setSignCanvas1Open}>
-                                                    <DialogTrigger>
-                                                        <Button variant="ghost" className="border-s rounded-none">Click to sign</Button>
+                                                    <DialogTrigger asChild>
+                                                        <Button variant="ghost" className="h-full border-s rounded-e-md rounded-s-none px-4">
+                                                            {value?.informedConsent?.patientSign && value?.informedConsent?.patientSign.length > 0 ? 'Edit Signature' : 'Click to sign'}
+                                                        </Button>
                                                     </DialogTrigger>
                                                     <DialogContent className="w-[95vw] sm:max-w-[850px] max-h-[90vh] overflow-y-auto">
                                                         <SignatureCanvas 
@@ -214,12 +216,23 @@ export const WaiverSection = ({
                                             <InputGroupInput
                                                 type="text"
                                                 className="text-center border-none shadow-none focus:ring-0"
-                                                placeholder="Type guardian name here..."    
+                                                placeholder="Type guardian name here..."
+                                                value={value?.informedConsent?.guardianName ?? ""}
+                                                onChange={(e) =>
+                                                    update({
+                                                        informedConsent: {
+                                                            ...value?.informedConsent,
+                                                            guardianName: e.target.value
+                                                        }
+                                                    })
+                                                }  
                                             />
-                                            <InputGroupAddon align={"inline-end"}>
+                                            <InputGroupAddon align={"inline-end"} className="p-2">
                                                 <Dialog open={isSignCanvas2Open} onOpenChange={setSignCanvas2Open}>
-                                                    <DialogTrigger>
-                                                        <Button variant="ghost" className="border-s rounded-none">Click to sign</Button>
+                                                    <DialogTrigger asChild>
+                                                        <Button variant="ghost" className="h-full border-s rounded-e-md rounded-s-none px-4">
+                                                            {value?.informedConsent?.guardianSign && value?.informedConsent?.guardianSign.length > 0 ? 'Edit Signature' : 'Click to sign'}
+                                                        </Button>
                                                     </DialogTrigger>
                                                     <DialogContent className="w-[95vw] sm:max-w-[850px] max-h-[90vh] overflow-y-auto">
                                                         <SignatureCanvas 
@@ -369,10 +382,12 @@ export const WaiverSection = ({
                                                     })
                                                 }
                                             />
-                                            <InputGroupAddon align={"inline-end"}>
+                                            <InputGroupAddon align={"inline-end"} className="p-2">
                                                 <Dialog open={isSignCanvas3Open} onOpenChange={setSignCanvas3Open}>
-                                                    <DialogTrigger>
-                                                        <Button variant="ghost" className="border-s rounded-none">Click to sign</Button>
+                                                    <DialogTrigger asChild>
+                                                        <Button variant="ghost" className="h-full border-s rounded-e-md rounded-s-none px-4">
+                                                            {value?.refusalOfTreatment?.patientSign && value?.refusalOfTreatment?.patientSign.length > 0 ? 'Edit Signature' : 'Click to sign'}
+                                                        </Button>
                                                     </DialogTrigger>
                                                     <DialogContent className="w-[95vw] sm:max-w-[850px] max-h-[90vh] overflow-y-auto">
                                                         <SignatureCanvas 
@@ -412,10 +427,12 @@ export const WaiverSection = ({
                                                     })
                                                 }
                                             />
-                                            <InputGroupAddon align={"inline-end"}>
+                                            <InputGroupAddon align={"inline-end"} className="p-2">
                                                 <Dialog open={isSignCanvas4Open} onOpenChange={setSignCanvas4Open}>
-                                                    <DialogTrigger>
-                                                        <Button variant="ghost" className="border-s rounded-none">Click to sign</Button>
+                                                    <DialogTrigger asChild>
+                                                        <Button variant="ghost" className="h-full border-s rounded-e-md rounded-s-none px-4">
+                                                            {value?.refusalOfTreatment?.witnessSign && value?.refusalOfTreatment?.witnessSign.length > 0 ? 'Edit Signature' : 'Click to sign'}
+                                                        </Button>
                                                     </DialogTrigger>
                                                     <DialogContent className="w-[95vw] sm:max-w-[850px] max-h-[90vh] overflow-y-auto">
                                                         <SignatureCanvas 
@@ -512,10 +529,12 @@ export const WaiverSection = ({
                                                     })
                                                 }
                                             />
-                                            <InputGroupAddon align={"inline-end"}>
+                                            <InputGroupAddon align={"inline-end"} className="p-2">
                                                 <Dialog open={isSignCanvas5Open} onOpenChange={setSignCanvas5Open}>
-                                                    <DialogTrigger>
-                                                        <Button variant="ghost" className="border-s rounded-none">Click to sign</Button>
+                                                    <DialogTrigger asChild>
+                                                        <Button variant="ghost" className="h-full border-s rounded-e-md rounded-s-none px-4">
+                                                            {value?.refusalForAdmission?.physicianSign && value?.refusalForAdmission?.physicianSign.length > 0 ? 'Edit Signature' : 'Click to sign'}
+                                                        </Button>
                                                     </DialogTrigger>
                                                     <DialogContent className="w-[95vw] sm:max-w-[850px] max-h-[90vh] overflow-y-auto">
                                                         <SignatureCanvas 
@@ -590,10 +609,12 @@ export const WaiverSection = ({
                                                     })
                                                 }
                                             />
-                                            <InputGroupAddon align={"inline-end"}>
+                                            <InputGroupAddon align={"inline-end"} className="p-2">
                                                 <Dialog open={isSignCanvas6Open} onOpenChange={setSignCanvas6Open}>
-                                                    <DialogTrigger>
-                                                        <Button variant="ghost" className="border-s rounded-none">Click to sign</Button>
+                                                    <DialogTrigger asChild>
+                                                        <Button variant="ghost" className="h-full border-s rounded-e-md rounded-s-none px-4">
+                                                            {value?.refusalForAdmission?.witnessSign && value?.refusalForAdmission?.witnessSign.length > 0 ? 'Edit Signature' : 'Click to sign'}
+                                                        </Button>
                                                     </DialogTrigger>
                                                     <DialogContent className="w-[95vw] sm:max-w-[850px] max-h-[90vh] overflow-y-auto">
                                                         <SignatureCanvas 

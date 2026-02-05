@@ -106,6 +106,32 @@ async function generatePCRPDF(data: PCRRecord): Promise<Uint8Array> {
         form.getTextField("history_lastIntake").setText(String(data.patientHistory?.lastIntake ?? ""));
         form.getTextField("history_eventsPrior").setText(String(data.patientHistory?.eventsPrior ?? ""));
 
+        form.getTextField("informedConsent_patientName").setText(String(data.waivers?.informedConsent?.patientName ?? ""));
+        form.getTextField("informedConsent_guardianName").setText(String(data.waivers?.informedConsent?.guardianName ?? ""));
+        form.getTextField("informedConsent_date1").setText(
+            data.waivers?.informedConsent?.date1 ? new Date(data.waivers.informedConsent.date1).toLocaleDateString() : ""
+        );
+        form.getTextField("informedConsent_date2").setText(
+            data.waivers?.informedConsent?.date2 ? new Date(data.waivers.informedConsent.date2).toLocaleDateString() : ""
+        );
+        form.getTextField("informedConsent_time1").setText(String(data.waivers?.informedConsent?.time1 ?? ""));
+        form.getTextField("informedConsent_time2").setText(String(data.waivers?.informedConsent?.time2 ?? ""));
+
+        form.getTextField("refusalOfTreatment_contactNo").setText(String(data.waivers?.refusalOfTreatment?.contactNo ?? ""));
+        form.getTextField("refusalOfTreatment_patientName").setText(String(data.waivers?.refusalOfTreatment?.patientName ?? ""));
+        form.getTextField("refusalOfTreatment_witnessName").setText(String(data.waivers?.refusalOfTreatment?.witnessName ?? ""));
+
+        form.getTextField("refusalForAdmission_medicalFacility").setText(String(data.waivers?.refusalForAdmission?.medicalFacility ?? ""));
+        form.getTextField("refusalForAdmission_physicianName").setText(String(data.waivers?.refusalForAdmission?.physicianName ?? ""));
+        form.getTextField("refusalForAdmission_witnessName").setText(String(data.waivers?.refusalForAdmission?.witnessName ?? ""));
+        form.getTextField("refusalForAdmission_date1").setText(
+            data.waivers?.refusalForAdmission?.date1 ? new Date(data.waivers.refusalForAdmission.date1).toLocaleDateString() : ""
+        );
+        form.getTextField("refusalForAdmission_date2").setText(
+            data.waivers?.refusalForAdmission?.date2 ? new Date(data.waivers.refusalForAdmission.date2).toLocaleDateString() : ""
+        );
+        form.getTextField("refusalForAdmission_reasonForRefusal").setText(String(data.waivers?.refusalForAdmission?.reasonForRefusal ?? ""));
+
 
         // 4️⃣ Flatten form so text becomes non-editable
         form.flatten();
